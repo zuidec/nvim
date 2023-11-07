@@ -22,7 +22,7 @@ require('mason').setup({})
 require('mason-lspconfig').setup({
     -- Replace the language servers listed here 
     -- with the ones you want to install
-    ensure_installed = {'marksman', 'lua_ls', 'pyright', 'clangd', 'cmake', 'bashls'},
+    ensure_installed = {'marksman', 'lua_ls', 'pyright', 'clangd', 'bashls'},
     handlers = {
       lsp_zero.default_setup,
     },
