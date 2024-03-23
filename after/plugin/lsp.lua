@@ -25,6 +25,29 @@ require('mason-lspconfig').setup({
     ensure_installed = {'marksman', 'lua_ls', 'pyright', 'clangd', 'bashls'},
     handlers = {
       lsp_zero.default_setup,
+      clangd = function()
+          require('lspconfig').clangd.setup({
+              on_attach = function(client,bufnr)
+                  --print("hello clangd")
+              end,
+              capabilities = capabilities,
+              cmd = {
+                  "clangd",
+                  "--function-arg-placeholders"
+                },
+              filetypes = {"c", "cpp", "objc", "objcpp", "cuda", "proto"},
+              root_dir = require('lspconfig').util.root_pattern(
+                '.clangd',
+                '.clang-tidy',
+                '.clang-format',
+                'compile_commands.json',
+                'compile_flags.txt',
+                'configure.ac',
+                '.git'
+                ),
+                single_file_support = true,
+            })
+        end
     },
   })
 
