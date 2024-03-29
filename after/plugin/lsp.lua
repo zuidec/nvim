@@ -33,7 +33,8 @@ require('mason-lspconfig').setup({
               capabilities = capabilities,
               cmd = {
                   "clangd",
-                  "--function-arg-placeholders"
+                  "--function-arg-placeholders",
+                  "--header-insertion=never"
                 },
               filetypes = {"c", "cpp", "objc", "objcpp", "cuda", "proto"},
               root_dir = require('lspconfig').util.root_pattern(
