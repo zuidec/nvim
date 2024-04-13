@@ -1,7 +1,12 @@
+-- Set leader to space
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+
+-- Copy and cut keymaps to system clipboard
+vim.keymap.set("v", "<C-c>", "+y")
+vim.keymap.set("n", "<C-c>", "+y$")
+vim.keymap.set("v", "<C-x>", "+d")
+vim.keymap.set("n", "<C-x>", "+d$")
+
+-- Set register for put and yank
 vim.keymap.set("n", "<leader>pp", "*p")
 vim.keymap.set("n", "<leader>yy", "*y")
-vim.keymap.set("n", "<leader>fd", vim.diagnostic.open_float)
-vim.keymap.set("n", "<leader>pu", ":!pio run -t upload<return>")
-vim.keymap.set("n", "<leader>pb", ":!pio run<return>")

@@ -1,4 +1,5 @@
 require("svens.packer")
 require("svens.remap")
+require("svens.custom_maps")
 require("svens.set")
 require("svens.functions")
