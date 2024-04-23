@@ -39,5 +39,18 @@ return require('packer').startup(function(use)
     {'L3MON4D3/LuaSnip'},
   }
 }
+use({
+  "epwalsh/obsidian.nvim",
+  tag = "*",  -- recommended, use latest release instead of latest commit
+  requires = {
+    -- Required.
+    "nvim-lua/plenary.nvim",
+
+    -- see below for full list of optional dependencies 👇
+  },
+  config = function()
+    require("obsidian").setup({})
+  end,
+})
 end)
 

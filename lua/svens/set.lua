@@ -35,3 +35,6 @@ vim.opt.updatetime = 50
 
 -- Set cursor behavior
 vim.opt.guicursor = "n-v-c-sm:block,ci-ve:ver25,r-cr-o:hor20,n-i:block-blinkwait700-blinkoff400-blinkon250-Cursor/lCursor"
+
+-- Set conceal level for obsidian plugin
+vim.opt.conceallevel = 1
