@@ -8,7 +8,6 @@ obsidian.setup({
   -- the workspace to the first workspace in the list whose `path` is a parent of the
   -- current markdown file being edited.
 
-
   workspaces = {
     {
       name = "personal",
