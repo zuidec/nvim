@@ -18,6 +18,7 @@ lsp_zero.on_attach(function(client, bufnr)
 
 end)
 
+
 require('mason').setup({})
 require('mason-lspconfig').setup({
     -- Replace the language servers listed here 
@@ -25,6 +26,11 @@ require('mason-lspconfig').setup({
     ensure_installed = {'marksman', 'lua_ls', 'pyright', 'clangd', 'bashls'},
     handlers = {
       lsp_zero.default_setup,
+
+      lua_ls = function ()
+        require('lspconfig').lua_ls.setup(lsp_zero.nvim_lua_ls())
+      end,
+
       clangd = function()
           require('lspconfig').clangd.setup({
               on_attach = function(client,bufnr)

@@ -38,6 +38,7 @@ return require('packer').startup(function(use)
             {'L3MON4D3/LuaSnip'},
         }
     }
+    use { 'folke/neodev.nvim' }
     use{"epwalsh/obsidian.nvim",
         tag = "*",  -- recommended, use latest release instead of latest commit
         requires = { "nvim-lua/plenary.nvim" },
