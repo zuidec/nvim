@@ -7,11 +7,40 @@ return require('packer').startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
 
+    -- File navigation
     use {
       'nvim-telescope/telescope.nvim', tag = '0.1.4',
-      -- or                            , branch = '0.1.x',
       requires = { {'nvim-lua/plenary.nvim'} }
     }
+    use { 'ThePrimeagen/harpoon' }
+    use { 'mbbill/undotree' }
+
+    -- Git integration
+    use { 'tpope/vim-fugitive'}
+
+    -- Syntax highlighting
+    use { 'nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' }}
+
+    -- LSP setup
+    use {'williamboman/mason.nvim'}
+    use {'williamboman/mason-lspconfig.nvim'}
+    use {'neovim/nvim-lspconfig'}
+
+    -- Autocompletion
+    use {'hrsh7th/nvim-cmp'}
+    use {'hrsh7th/cmp-nvim-lsp'}
+    use {'L3MON4D3/LuaSnip'}
+
+    -- Neovim lua LSP/completion -> need to move to lazydev.nvim
+    use {'folke/neodev.nvim' }
+
+    -- Obsidian plugin
+    use {"epwalsh/obsidian.nvim",
+        tag = "*",
+        requires = { "nvim-lua/plenary.nvim" },
+    }
+
+    -- Color Themes
     use { 'NLKNguyen/papercolor-theme' }
     use { 'tiagovla/tokyodark.nvim' }
     use { 'sainnhe/gruvbox-material' }
@@ -19,11 +48,7 @@ return require('packer').startup(function(use)
     use { 'comfysage/evergarden' }
     use { 'sainnhe/everforest' }
 
-    use { 'nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' }}
-    use { 'ThePrimeagen/harpoon' }
-    use { 'mbbill/undotree' }
-    use { 'tpope/vim-fugitive'}
-    use { 'VonHeikemen/lsp-zero.nvim',
+   --[[ use { 'VonHeikemen/lsp-zero.nvim',
         branch = 'v3.x',
         requires = {
             --- Uncomment these if you want to manage LSP servers from neovim
@@ -37,11 +62,6 @@ return require('packer').startup(function(use)
             {'hrsh7th/cmp-nvim-lsp'},
             {'L3MON4D3/LuaSnip'},
         }
-    }
-    use { 'folke/neodev.nvim' }
-    use{"epwalsh/obsidian.nvim",
-        tag = "*",  -- recommended, use latest release instead of latest commit
-        requires = { "nvim-lua/plenary.nvim" },
-    }
+    }]]--
 end)
 

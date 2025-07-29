@@ -1,4 +1,4 @@
-local lsp_zero = require('lsp-zero')
+--[[local lsp_zero = require('lsp-zero')
 lsp_zero:on_attach(function(client, bufnr)
   -- see :help lsp-zero-keybindings
   -- to learn the available actions
@@ -18,12 +18,12 @@ lsp_zero:on_attach(function(client, bufnr)
 
 end)
 
-
 require('mason').setup({})
 require('mason-lspconfig').setup({
     -- Replace the language servers listed here 
     -- with the ones you want to install
     ensure_installed = {'marksman', 'lua_ls', 'pyright', 'clangd', 'bashls'},
+
     handlers = {
       lsp_zero.default_setup,
 
@@ -34,7 +34,7 @@ require('mason-lspconfig').setup({
       clangd = function()
           require('lspconfig').clangd.setup({
               on_attach = function(client,bufnr)
-                  --print("hello clangd")
+                  print("hello clangd")
               end,
               capabilities = capabilities,
               cmd = {
@@ -59,3 +59,39 @@ require('mason-lspconfig').setup({
   })
 
 
+]]--
+-- Lua config
+vim.lsp.config('luals', {
+    cmd = {'lua-language-server'},
+    filetypes = {'lua'},
+    root_markers = { '.luarc.json', '.luarc.jsonc'},
+})
+vim.lsp.enable('luals')
+
+-- Clangd config
+vim.lsp.config('clangd', {
+    cmd = {
+        "clangd",
+        "--function-arg-placeholders=0",
+        "--header-insertion=never"
+    },
+    filetypes = {
+        "c",
+        "cpp",
+        "objc",
+        "objcpp",
+        "cuda",
+        "proto"
+    },
+    root_markers = {
+        '.clangd',
+        '.clang-tidy',
+        '.clang-format',
+        'compile_commands.json',
+        'compile_flags.txt',
+        'configure.ac',
+        '.git'
+    },
+    single_file_support = true,
+})
+vim.lsp.enable('clangd')

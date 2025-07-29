@@ -4,4 +4,3 @@ package.path = home_dir ..  "/.config/nvim/after/plugin/?.lua"
 
 require( "colors" )
 ColorMyPencils()
-
