@@ -1,68 +1,9 @@
---[[local lsp_zero = require('lsp-zero')
-lsp_zero:on_attach(function(client, bufnr)
-  -- see :help lsp-zero-keybindings
-  -- to learn the available actions
-  --lsp_zero.default_keymaps({buffer = bufnr})
-  local opts = {buffer = bufnr, remap = false}
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-  vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
-  vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
-  vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
-  vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, opts)
-  vim.keymap.set("n", "[d", function() vim.diagnostic.jump({count=1, float=true}) end, opts)
-  vim.keymap.set("n", "]d", function() vim.diagnostic.jump({count=-1, float=true}) end, opts)
-  vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end, opts)
-  vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
-  vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
-  vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
-
-end)
-
-require('mason').setup({})
-require('mason-lspconfig').setup({
-    -- Replace the language servers listed here 
-    -- with the ones you want to install
-    ensure_installed = {'marksman', 'lua_ls', 'pyright', 'clangd', 'bashls'},
-
-    handlers = {
-      lsp_zero.default_setup,
-
-      lua_ls = function ()
-        require('lspconfig').lua_ls.setup(lsp_zero.nvim_lua_ls())
-      end,
-
-      clangd = function()
-          require('lspconfig').clangd.setup({
-              on_attach = function(client,bufnr)
-                  print("hello clangd")
-              end,
-              capabilities = capabilities,
-              cmd = {
-                  "clangd",
-                  "--function-arg-placeholders=0",
-                  "--header-insertion=never"
-                },
-              filetypes = {"c", "cpp", "objc", "objcpp", "cuda", "proto"},
-              root_dir = require('lspconfig').util.root_pattern(
-                '.clangd',
-                '.clang-tidy',
-                '.clang-format',
-                'compile_commands.json',
-                'compile_flags.txt',
-                'configure.ac',
-                '.git'
-                ),
-                single_file_support = true,
-            })
-        end
-    },
-  })
-
-
-]]--
 -- Lua config
 vim.lsp.config('luals', {
     cmd = {'lua-language-server'},
+    capabilities = capabilities,
     filetypes = {'lua'},
     root_markers = { '.luarc.json', '.luarc.jsonc'},
 })
@@ -70,10 +11,13 @@ vim.lsp.enable('luals')
 
 -- Clangd config
 vim.lsp.config('clangd', {
+    capabilities = capabilities,
     cmd = {
         "clangd",
-        "--function-arg-placeholders=0",
-        "--header-insertion=never"
+        -- Uncomment to stop function argument placeholders from being used
+        --"--function-arg-placeholders=0",
+        --"--header-insertion=never",
+        "--header-insertion-decorators",
     },
     filetypes = {
         "c",
@@ -81,7 +25,7 @@ vim.lsp.config('clangd', {
         "objc",
         "objcpp",
         "cuda",
-        "proto"
+        "proto",
     },
     root_markers = {
         '.clangd',
@@ -90,7 +34,7 @@ vim.lsp.config('clangd', {
         'compile_commands.json',
         'compile_flags.txt',
         'configure.ac',
-        '.git'
+        '.git',
     },
     single_file_support = true,
 })
