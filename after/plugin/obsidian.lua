@@ -93,26 +93,39 @@ obsidian.setup({
     -- way then set 'mappings = {}'.
     mappings = {
         -- Overrides the 'gf' mapping to work on markdown/wiki links within your vault.
-        ["gf"] = {
+        ["gd"] = {
             action = function()
                 return require("obsidian").util.gf_passthrough()
             end,
             opts = { noremap = false, expr = true, buffer = true },
         },
         -- Toggle check-boxes.
-        ["<leader>ch"] = {
+        ["<leader><cr>"] = {
             action = function()
                 return require("obsidian").util.toggle_checkbox()
             end,
             opts = { buffer = true },
         },
-        -- Smart action depending on context, either follow link or toggle checkbox.
+        -- Open link in current window
         ["<cr>"] = {
             action = function()
-                return require("obsidian").util.smart_action()
+                if require('obsidian').util.cursor_on_markdown_link(nil, nil, true) then
+                    return "<cmd>ObsidianFollowLink<CR>"
+                end
+                return nil
             end,
             opts = { buffer = true, expr = true },
-            }
+        },
+        -- Open link in new vsplit
+        ["<leader>v<cr>"] = {
+            action = function()
+                if require('obsidian').util.cursor_on_markdown_link(nil, nil, true) then
+                    return "<cmd>ObsidianFollowLink vsplit<CR>"
+                end
+                return nil
+            end,
+            opts = { buffer = true, expr = true },
+        }
     },
 
     -- Where to put new notes. Valid options are
@@ -264,7 +277,7 @@ obsidian.setup({
     -- 1. "current" (the default) - to always open in the current window
     -- 2. "vsplit" - to open in a vertical split if there's not already a vertical split
     -- 3. "hsplit" - to open in a horizontal split if there's not already a horizontal split
-    open_notes_in = "vsplit",
+    open_notes_in = "current",
 
     -- Optional, define your own callbacks to further customize behavior.
     --callbacks = {

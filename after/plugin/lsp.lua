@@ -39,3 +39,12 @@ vim.lsp.config('clangd', {
     single_file_support = true,
 })
 vim.lsp.enable('clangd')
+
+-- Markdown config
+vim.lsp.config('marksman', {
+    cmd = {'marksman'},
+    capabilities = capabilities,
+    filetypes = {'md'},
+    root_markers = {'.marksman.toml'},
+})
+vim.lsp.enable('marksman')
