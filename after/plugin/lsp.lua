@@ -16,7 +16,7 @@ vim.lsp.config('clangd', {
         "clangd",
         -- Uncomment to stop function argument placeholders from being used
         --"--function-arg-placeholders=0",
-        --"--header-insertion=never",
+        "--header-insertion=never",
         "--header-insertion-decorators",
     },
     filetypes = {

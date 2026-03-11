@@ -14,6 +14,10 @@ function C_headerguard()
         "#ifndef " .. filename,
         "#define " .. filename .. "\t// BEGIN " .. filename,
         "",
+        "#ifdef __cplusplus",
+        "extern \"C\" {",
+        "#endif",
+        "",
         "/*",
         " *\tIncludes",
         " */",
@@ -37,9 +41,14 @@ function C_headerguard()
         " */",
         "",
         "",
-        ""
+        "",
     })
-    vim.api.nvim_buf_set_lines(0, -1, -1, true, {"#endif\t// END " .. filename})
+    vim.api.nvim_buf_set_lines(0, -1, -1, true, {
+        "#ifdef __cplusplus",
+        "}",
+        "#endif",
+        "",
+        "#endif\t// END " .. filename})
 end
 
 function C_main()
