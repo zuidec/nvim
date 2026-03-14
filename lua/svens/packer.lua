@@ -54,6 +54,7 @@ return require('packer').startup(function(use)
     -- Color Themes
     use { 'NLKNguyen/papercolor-theme' }
     use { 'tiagovla/tokyodark.nvim' }
+    use { 'ellisonleao/gruvbox.nvim' }
     use { 'sainnhe/gruvbox-material' }
     use { 'ribru17/bamboo.nvim' }
     use { 'xero/miasma.nvim' }
