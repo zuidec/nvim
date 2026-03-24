@@ -44,7 +44,7 @@ vim.lsp.enable('clangd')
 vim.lsp.config('marksman', {
     cmd = {'marksman'},
     capabilities = capabilities,
-    filetypes = {'md'},
+    filetypes = {'markdown'},
     root_markers = {'.marksman.toml'},
 })
 vim.lsp.enable('marksman')
