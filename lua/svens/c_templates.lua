@@ -6,7 +6,7 @@ function C_headerguard()
     local filename = vim.fn.expand('%:t')
     filename = string.upper(filename)
     filename = string.gsub(filename, "%.", "_")
-    
+
     local info_size = C_fileinfo()
 
     vim.api.nvim_buf_set_lines(0, info_size, info_size, true, {
@@ -53,9 +53,9 @@ end
 
 function C_main()
     -- Inserts a basic template with a main() function
-    
+
     local info_size = C_fileinfo()
-    
+
     vim.api.nvim_buf_set_lines(0, info_size, info_size, true, {
         "",
         "int main(int argc, char* argv[])   { ",
@@ -69,7 +69,7 @@ function C_fileinfo()
 
     -- Inserts comment at the top of file with name, date
     local filename = vim.fn.expand('%:t')
-    
+
     vim.api.nvim_buf_set_lines(0, 0, 0, true, {
         "/*",
         " *\t" .. filename,
