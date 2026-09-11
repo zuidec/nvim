@@ -27,7 +27,6 @@ obsidian.setup({
     -- When obsidian.nvim is loaded by your plugin manager, it will automatically set
     -- the workspace to the first workspace in the list whose `path` is a parent of the
     -- current markdown file being edited.
-
     legacy_commands = false,
     workspaces = {
         {
@@ -83,15 +82,6 @@ obsidian.setup({
         -- Optional, if you want to automatically insert a template from your template directory like 'daily.md'
         template = nil
     },
-
-    -- Optional, completion of wiki links, local markdown links, and tags using nvim-cmp.
-    completion = {
-        -- Set to false to disable completion.
-        nvim_cmp = true,
-        -- Trigger completion at 2 chars.
-        min_chars = 2,
-    },
-
 
     -- Where to put new notes. Valid options are
     --  * "current_dir" - put new notes in same directory as the current buffer.

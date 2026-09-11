@@ -21,7 +21,7 @@ return require('packer').startup(function(use)
     use { 'tpope/vim-fugitive'}
 
     -- Syntax highlighting
-    use { 'nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' }}
+    use { 'nvim-treesitter/nvim-treesitter', branch = 'main', { run = ':TSUpdate' }}
 
     -- LSP setup
     use {'williamboman/mason.nvim'}

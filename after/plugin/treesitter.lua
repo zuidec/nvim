@@ -1,19 +1,15 @@
-require'nvim-treesitter.configs'.setup {
-  -- A list of parser names, or "all" (the five listed parsers should always be installed)
-  ensure_installed = {
+local ts = require('nvim-treesitter')
+
+-- A list of parser names, or "all" (the five listed parsers should always be installed)
+ts.install{
       "vimdoc", "javascript", "markdown", "markdown_inline", "php",
       "html", "c", "cpp", "lua", "vim", "vimdoc", "query", "latex",
       "yaml"
-  },
+  }
 
-  -- Install parsers synchronously (only applied to `ensure_installed`)
-  sync_install = false,
+vim.api.nvim_create_autocmd('FileType', {
+     callback = function()
+         pcall(vim.treesitter.start)
+     end,
+})
 
-  -- Automatically install missing parsers when entering buffer
-  -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
-  auto_install = true,
-  highlight = {
-    enable = true,
-    additional_vim_regex_highlighting = false,
-  },
-}

@@ -1,4 +1,5 @@
 require("svens.c_templates")
+require("svens.md_templates")
 
 vim.api.nvim_create_user_command('Cguard',
 
@@ -22,4 +23,11 @@ vim.api.nvim_create_user_command('Cinfo',
         C_fileinfo()
     end,
     {nargs = 0, desc = 'Insert comment with file info at top'}
+)
+
+vim.api.nvim_create_user_command('Mrecipe',
+    function()
+        InsertRecipe()
+    end,
+    {nargs = 0, desc = 'Insert markdown recipe template at bottom of file'}
 )
