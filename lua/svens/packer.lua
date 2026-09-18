@@ -11,7 +11,7 @@ return require('packer').startup(function(use)
     use {'folke/snacks.nvim'}
 
     -- File navigation
-    use {'nvim-telescope/telescope.nvim', tag = '0.1.4',
+    use {'nvim-telescope/telescope.nvim',
       requires = { {'nvim-lua/plenary.nvim'} }
     }
     use { 'ThePrimeagen/harpoon' }
