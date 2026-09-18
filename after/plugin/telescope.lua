@@ -5,16 +5,11 @@ vim.keymap.set('n', '<leader>pd', builtin.grep_string, {})
 vim.keymap.set('v', '<leader>pd', builtin.grep_string, {})
 vim.keymap.set('n', '<leader>ps', builtin.live_grep, {})
 
---[[vim.keymap.set('n', '<leader>ps', function()
-	builtin.grep_string({ search = vim.fn.input("Grep > ") });
-
-end)]]--
-
 local telescope = require("telescope")
 local telescopeConfig = require("telescope.config")
 
 -- Clone the default Telescope configuration
-local vimgrep_arguments = { telescopeConfig.values.vimgrep_arguments }
+local vimgrep_arguments = { unpack(telescopeConfig.values.vimgrep_arguments) }
 
 -- I want to search in hidden/dot files.
 table.insert(vimgrep_arguments, "--hidden")
